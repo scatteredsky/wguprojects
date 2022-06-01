@@ -38,20 +38,20 @@ CREATE TABLE supplier
 /* Add shop_id FK */
 ALTER TABLE employee
   ADD shop_id INTEGER,
-  ADD FOREIGN KEY(shop_id) REFERENCES COFFEE_SHOP(shop_id);
+  ADD FOREIGN KEY(shop_id) REFERENCES coffee_shop(shop_id);
 
 /* Add shop_id and supplier_id FKs */
 ALTER TABLE coffee
   ADD shop_id INTEGER,
   ADD supplier_id INTEGER,
   ADD FOREIGN KEY(shop_id) REFERENCES coffee_shop(shop_id),
-  ADD FOREIGN KEY(supplier_id) REFERENCES SUPPLIER(supplier_id);
+  ADD FOREIGN KEY(supplier_id) REFERENCES supplier(supplier_id);
 
 /* Insert sample data for employee table */
 INSERT INTO employee(employee_id, first_name, last_name, hire_date, job_title)
 VALUES(1, "John", "Smith", "2022-01-01", "Shift Leader"),
-(2, "Joan", "Rivers", "2022-01-02", "Attendant"),
-(3, "Patty", "Dorton", "2022-02-20", "Attendant"),
+(2, "Joan", "Rivers", "2022-01-01", "Attendant"),
+(3, "Patty", "Dorton", "2022-02-14", "Attendant"),
 (4, "Lana", "Turner", "2022-05-09", "Attendant");
 
 /* Insert sample data for Coffee Shop table */
