@@ -35,12 +35,12 @@ CREATE TABLE supplier
   email VARCHAR(50) NOT NULL
 );
 
-/* Add shop_id FK */
+/* Add shop_id FK in emplyee table */
 ALTER TABLE employee
   ADD shop_id INTEGER,
   ADD FOREIGN KEY(shop_id) REFERENCES coffee_shop(shop_id);
 
-/* Add shop_id and supplier_id FKs */
+/* Add shop_id and supplier_id FKs in  coffee table */
 ALTER TABLE coffee
   ADD shop_id INTEGER,
   ADD supplier_id INTEGER,
@@ -87,11 +87,24 @@ SET shop_id = 1 WHERE employee_id = 4;
 
 /* Set shop and supplier id for each coffee */
 UPDATE coffee
-SET shop_id = 1, supplier_id = 1 WHERE coffee_id = 3;
+SET shop_id = 1, supplier_id = 1 WHERE coffee_id = 6;
 UPDATE coffee
-SET shop_id = 2, supplier_id = 2 WHERE coffee_id = 1;
+SET shop_id = 1, supplier_id = 2 WHERE coffee_id = 4;
 UPDATE coffee
-SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 2;
+SET shop_id = 1, supplier_id = 3 WHERE coffee_id = 1;
+UPDATE coffee
+SET shop_id = 2, supplier_id = 1 WHERE coffee_id = 3;
+UPDATE coffee
+SET shop_id = 2, supplier_id = 2 WHERE coffee_id = 5;
+UPDATE coffee
+SET shop_id = 2, supplier_id = 3 WHERE coffee_id = 2;
+UPDATE coffee
+SET shop_id = 3, supplier_id = 1 WHERE coffee_id = 3;
+UPDATE coffee
+SET shop_id = 3, supplier_id = 2 WHERE coffee_id = 5;
+UPDATE coffee
+SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 1;
+
 
 /* Create view to concatenate employee names */
 CREATE VIEW concat_names AS
