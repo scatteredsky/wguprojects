@@ -1,4 +1,4 @@
-/* Create Employee table */
+/* B,1-a Create Employee table */
 CREATE TABLE employee
 (
   employee_id INTEGER PRIMARY KEY,
@@ -8,7 +8,7 @@ CREATE TABLE employee
   job_title VARCHAR(30)
 );
 
-/* Create Coffee Shop table */
+/* B,1-a Create Coffee Shop table */
 CREATE TABLE coffee_shop
 (
   shop_id INTEGER PRIMARY KEY,
@@ -17,7 +17,7 @@ CREATE TABLE coffee_shop
   state CHAR(2)
 );
 
-/* Create Coffee table */
+/* B,1-a Create Coffee table */
 CREATE TABLE coffee
 (
   coffee_id INTEGER PRIMARY KEY,
@@ -25,7 +25,7 @@ CREATE TABLE coffee
   price_per_pound NUMERIC(5,2)
 );
 
-/* Create Supplier table */
+/* B,1-a Create Supplier table */
 CREATE TABLE supplier
 (
   supplier_id INTEGER PRIMARY KEY,
