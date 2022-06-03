@@ -40,3 +40,119 @@ CREATE TABLE supplier
   email VARCHAR(50) NOT NULL
 );
 ```
+
+Code to add the foreign keys:
+
+```sql
+/* Add shop_id FK in emplyee table */
+ALTER TABLE employee
+  ADD shop_id INTEGER,
+  ADD FOREIGN KEY(shop_id) REFERENCES coffee_shop(shop_id);
+
+/* Add shop_id and supplier_id FKs in  coffee table */
+ALTER TABLE coffee
+  ADD shop_id INTEGER,
+  ADD supplier_id INTEGER,
+  ADD FOREIGN KEY(shop_id) REFERENCES coffee_shop(shop_id),
+  ADD FOREIGN KEY(supplier_id) REFERENCES supplier(supplier_id);
+```
+
+Code to insert data into the tables:
+
+```sql
+/* Insert sample data for employee table */
+INSERT INTO employee(employee_id, first_name, last_name, hire_date, job_title)
+VALUES(1, "John", "Smith", "2022-01-01", "Shift Leader"),
+(2, "Joan", "Rivers", "2022-01-01", "Attendant"),
+(3, "Patty", "Dorton", "2022-02-14", "Attendant"),
+(4, "Lana", "Turner", "2022-05-09", "Attendant");
+
+/* Insert sample data for Coffee Shop table */
+INSERT INTO coffee_shop(shop_id, shop_name, city, state)
+VALUES(1, "Jaunty Coffee Belleville", "Belleville", 'IL'),
+(2, "Jaunty Coffee O'Fallon", "O'Fallon", 'IL'),
+(3, "Jaunty Coffee East", "East St. Louis", 'IL');
+
+/* Insert sample data for Coffee table */
+INSERT INTO coffee(coffee_id, coffee_name, price_per_pound)
+VALUES(1, "Fresh Start Breakfast Blend", 14.55),
+(2, "Midnight in Paris French Roast", 12.99),
+(3, "Secret Stash Pour", 16.42),
+(4, "Chai Latte", 11.99),
+(5, "Asian Light Roast", 13.99),
+(6, "Hazelnut Medium Roast Blend", 14.99);
+
+/* Insert sample data for Supplier table */
+INSERT INTO supplier(supplier_id, company_name, country, sales_contact_name, email)
+VALUES(1, "Elixir Coffee Roasters", "Australia", "Alessandra Moore", "amoore@elixircoffee.com.au"),
+(2, "Joe's Garage Coffee", "United States", "Richard Kale", "richardkale@joesgaragecoffee.com"),
+(3, "Rose Bank Coffee", "Australia", "Luana Ports", "portslu@rosebankcoffee.com.au");
+```
+
+Fun fact: the above suppliers do exist and their websites are correct as of this date, however the emails were made up by me.
+
+Code to set shop_id for employees:
+
+```sql
+/* Set shop_id for each employee */
+UPDATE employee
+SET shop_id = 1 WHERE employee_id = 1;
+UPDATE employee
+SET shop_id = 2 WHERE employee_id = 2;
+UPDATE employee
+SET shop_id = 3 WHERE employee_id = 3;
+UPDATE employee
+SET shop_id = 1 WHERE employee_id = 4;
+```
+
+Code to set shop_id for each coffee:
+
+```sql
+/* Set shop and supplier id for each coffee */
+UPDATE coffee
+SET shop_id = 1, supplier_id = 1 WHERE coffee_id = 6;
+UPDATE coffee
+SET shop_id = 1, supplier_id = 2 WHERE coffee_id = 4;
+UPDATE coffee
+SET shop_id = 1, supplier_id = 3 WHERE coffee_id = 1;
+UPDATE coffee
+SET shop_id = 2, supplier_id = 1 WHERE coffee_id = 3;
+UPDATE coffee
+SET shop_id = 2, supplier_id = 2 WHERE coffee_id = 5;
+UPDATE coffee
+SET shop_id = 2, supplier_id = 3 WHERE coffee_id = 2;
+UPDATE coffee
+SET shop_id = 3, supplier_id = 1 WHERE coffee_id = 3;
+UPDATE coffee
+SET shop_id = 3, supplier_id = 2 WHERE coffee_id = 5;
+UPDATE coffee
+SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 1;
+```
+
+#### Code to create the views
+
+Concatenating employees' names
+
+```sql
+/* 3-a, Create view to concatenate employee names */
+CREATE VIEW concat_names AS
+SELECT CONCAT(first_name, ' ', last_name) AS employee_full_name, employee_id, hire_date, job_title, shop_id
+FROM employee
+WHERE first_name IS NOT NULL AND last_name IS NOT NULL;
+```
+
+Code to create SFW query:
+
+```sql
+/* Create a SFW query for Coffee Shop table */
+SELECT * FROM coffee_shop
+WHERE state = 'IL'
+```
+
+Code to create the index:
+
+```sql
+/* Create an index on the coffee_name field */
+CREATE INDEX coffee_index
+ON coffee (coffee_name);
+```
