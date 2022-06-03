@@ -63,7 +63,7 @@ VALUES(1, "Jaunty Coffee Belleville", "Belleville", 'IL'),
 /* Insert sample data for Coffee table */
 INSERT INTO coffee(coffee_id, coffee_name, price_per_pound)
 VALUES(1, "Fresh Start Breakfast Blend", 14.55),
-(2, "Midnight in Paris French Roast Blend", 12.99),
+(2, "Midnight in Paris French Roast", 12.99),
 (3, "Secret Stash Pour", 16.42),
 (4, "Chai Latte", 11.99),
 (5, "Asian Light Roast", 13.99),
@@ -81,7 +81,7 @@ SET shop_id = 1 WHERE employee_id = 1;
 UPDATE employee
 SET shop_id = 2 WHERE employee_id = 2;
 UPDATE employee
-SET shop_id = 3 WHERE employee_id = 3,
+SET shop_id = 3 WHERE employee_id = 3;
 UPDATE employee
 SET shop_id = 1 WHERE employee_id = 4;
 
@@ -107,7 +107,7 @@ SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 1;
 
 
 /* Create view to concatenate employee names */
-CREATE VIEW concat_names AS
+CREATE VIEW full_names AS
 SELECT CONCAT(first_name, ' ', last_name) AS employee_full_name, employee_id, hire_date, job_title, shop_id
 FROM employee
 WHERE first_name IS NOT NULL AND last_name IS NOT NULL;
