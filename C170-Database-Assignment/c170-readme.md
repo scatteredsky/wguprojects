@@ -1,6 +1,10 @@
 # C170
 
-Code for creating the Jaunty Coffee tables:
+## Code
+
+You can find the annotated code below or in a single file [here.](JauntyCoffee.sql)
+
+### Code for creating the Jaunty Coffee tables
 
 ```sql
 /* B,1-a Create employee table */
@@ -129,13 +133,13 @@ UPDATE coffee
 SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 1;
 ```
 
-#### Code to create the views
+### Code to create the views
 
 Concatenating employees' names
 
 ```sql
 /* 3-a, Create view to concatenate employee names */
-CREATE VIEW concat_names AS
+CREATE VIEW full_names AS
 SELECT CONCAT(first_name, ' ', last_name) AS employee_full_name, employee_id, hire_date, job_title, shop_id
 FROM employee
 WHERE first_name IS NOT NULL AND last_name IS NOT NULL;
@@ -155,4 +159,13 @@ Code to create the index:
 /* Create an index on the coffee_name field */
 CREATE INDEX coffee_index
 ON coffee (coffee_name);
+```
+
+ Code for the Join:
+
+ ```sql
+ /* Create a query to join three tables and include all attributes */
+SELECT * FROM employee
+JOIN coffee_shop ON employee.shop_id = coffee_shop.shop_id
+JOIN coffee ON coffee_shop.shop_id = coffee.shop_id
 ```
