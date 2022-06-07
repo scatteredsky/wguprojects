@@ -24,7 +24,7 @@ CREATE TABLE `bagel_order` (
 CREATE TABLE `bagel_order_line_item` (
   `bagel_order_id` INT NOT NULL AUTO_INCREMENT,
   `bagel_id` INT NOT NULL,
-  `bagel_quantity` INT,
+  `bagel_quantity` INT NOT NULL,
   PRIMARY KEY (`bagel_order_id`, `bagel_id`)
 );
 
