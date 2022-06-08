@@ -76,53 +76,35 @@ VALUES(1, "Elixir Coffee Roasters", "Australia", "Alessandra Moore", "amoore@eli
 (3, "Rose Bank Coffee", "Australia", "Luana Ports", "portslu@rosebankcoffee.com.au");
 
 /* Set shop_id for each employee */
-UPDATE employee
-SET shop_id = 1 WHERE employee_id = 1;
-UPDATE employee
-SET shop_id = 2 WHERE employee_id = 2;
-UPDATE employee
-SET shop_id = 3 WHERE employee_id = 3;
-UPDATE employee
-SET shop_id = 1 WHERE employee_id = 4;
+UPDATE employee SET shop_id = 1 WHERE employee_id = 1;
+UPDATE employee SET shop_id = 2 WHERE employee_id = 2;
+UPDATE employee SET shop_id = 3 WHERE employee_id = 3;
+UPDATE employee SET shop_id = 1 WHERE employee_id = 4;
 
 /* Set shop and supplier id for each coffee */
-UPDATE coffee
-SET shop_id = 1, supplier_id = 1 WHERE coffee_id = 6;
-UPDATE coffee
-SET shop_id = 1, supplier_id = 2 WHERE coffee_id = 4;
-UPDATE coffee
-SET shop_id = 1, supplier_id = 3 WHERE coffee_id = 1;
-UPDATE coffee
-SET shop_id = 2, supplier_id = 1 WHERE coffee_id = 3;
-UPDATE coffee
-SET shop_id = 2, supplier_id = 2 WHERE coffee_id = 5;
-UPDATE coffee
-SET shop_id = 2, supplier_id = 3 WHERE coffee_id = 2;
-UPDATE coffee
-SET shop_id = 3, supplier_id = 1 WHERE coffee_id = 3;
-UPDATE coffee
-SET shop_id = 3, supplier_id = 2 WHERE coffee_id = 5;
-UPDATE coffee
-SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 1;
+UPDATE coffee SET shop_id = 1, supplier_id = 1 WHERE coffee_id = 6;
+UPDATE coffee SET shop_id = 1, supplier_id = 2 WHERE coffee_id = 4;
+UPDATE coffee SET shop_id = 1, supplier_id = 3 WHERE coffee_id = 1;
+UPDATE coffee SET shop_id = 2, supplier_id = 1 WHERE coffee_id = 3;
+UPDATE coffee SET shop_id = 2, supplier_id = 2 WHERE coffee_id = 5;
+UPDATE coffee SET shop_id = 2, supplier_id = 3 WHERE coffee_id = 2;
+UPDATE coffee SET shop_id = 3, supplier_id = 1 WHERE coffee_id = 3;
+UPDATE coffee SET shop_id = 3, supplier_id = 2 WHERE coffee_id = 5;
+UPDATE coffee SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 1;
 
 
 /* Create view to concatenate employee names */
 CREATE VIEW full_names AS
 SELECT CONCAT(first_name, ' ', last_name) AS employee_full_name, employee_id, hire_date, job_title, shop_id
-FROM employee
-WHERE first_name IS NOT NULL AND last_name IS NOT NULL;
+FROM employee WHERE first_name IS NOT NULL AND last_name IS NOT NULL;
 
 /* Create an index on the coffee_name field */
-CREATE INDEX coffee_index
-ON coffee (coffee_name);
+CREATE INDEX coffee_index ON coffee (coffee_name);
 
 /* Create a SFW query for Coffee Shop table */
-SELECT * FROM coffee_shop
-WHERE state = 'IL'
+SELECT * FROM coffee_shop WHERE state = 'IL'
 
 /* Create a query to join three tables and include all attributes */
-/*
 SELECT * FROM employee
 JOIN coffee_shop ON employee.shop_id = coffee_shop.shop_id
 JOIN coffee ON coffee_shop.shop_id = coffee.shop_id
-*/
