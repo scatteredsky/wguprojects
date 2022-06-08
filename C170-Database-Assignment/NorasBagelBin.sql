@@ -14,7 +14,7 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `bagel_order` (
   `bagel_order_id` INT NOT NULL AUTO_INCREMENT,
-  `customer_id` INT,
+  `customer_id` INT NOT NULL,
   `order_date` TIMESTAMP,
   `delivery_fee` DECIMAL(4,2),
   `special_notes` VARCHAR(250),
@@ -37,5 +37,6 @@ CREATE TABLE `bagel` (
 );
 
 /*  Add Foreign Key to tables */
-ALTER TABLE `bagel_order_line_item` ADD FOREIGN KEY (`bagel_order_id`) REFERENCES `bagel_order`(`bagel_order_id`);
-ALTER TABLE `bagel_order_line_item` ADD FOREIGN KEY (`bagel_id`) REFERENCES `bagel`(`bagel_id`);
+ALTER TABLE `bagel_order` ADD CONSTRAINT FK_customer_id FOREIGN KEY (`customer_id`) REFERENCES `customer`(`customer_id`);
+ALTER TABLE `bagel_order_line_item` ADD CONSTRAINT FK_bagel_order_id FOREIGN KEY (`bagel_order_id`) REFERENCES `bagel_order`(`bagel_order_id`);
+ALTER TABLE `bagel_order_line_item` ADD CONSTRAINT FK_bagel_id  FOREIGN KEY (`bagel_id`) REFERENCES `bagel`(`bagel_id`);
