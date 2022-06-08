@@ -99,38 +99,25 @@ Code to set shop_id for employees:
 
 ```sql
 /* Set shop_id for each employee */
-UPDATE employee
-SET shop_id = 1 WHERE employee_id = 1;
-UPDATE employee
-SET shop_id = 2 WHERE employee_id = 2;
-UPDATE employee
-SET shop_id = 3 WHERE employee_id = 3;
-UPDATE employee
-SET shop_id = 1 WHERE employee_id = 4;
+UPDATE employee SET shop_id = 1 WHERE employee_id = 1;
+UPDATE employee SET shop_id = 2 WHERE employee_id = 2;
+UPDATE employee SET shop_id = 3 WHERE employee_id = 3;
+UPDATE employee SET shop_id = 1 WHERE employee_id = 4;
 ```
 
 Code to set shop_id for each coffee:
 
 ```sql
 /* Set shop and supplier id for each coffee */
-UPDATE coffee
-SET shop_id = 1, supplier_id = 1 WHERE coffee_id = 6;
-UPDATE coffee
-SET shop_id = 1, supplier_id = 2 WHERE coffee_id = 4;
-UPDATE coffee
-SET shop_id = 1, supplier_id = 3 WHERE coffee_id = 1;
-UPDATE coffee
-SET shop_id = 2, supplier_id = 1 WHERE coffee_id = 3;
-UPDATE coffee
-SET shop_id = 2, supplier_id = 2 WHERE coffee_id = 5;
-UPDATE coffee
-SET shop_id = 2, supplier_id = 3 WHERE coffee_id = 2;
-UPDATE coffee
-SET shop_id = 3, supplier_id = 1 WHERE coffee_id = 3;
-UPDATE coffee
-SET shop_id = 3, supplier_id = 2 WHERE coffee_id = 5;
-UPDATE coffee
-SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 1;
+UPDATE coffee SET shop_id = 1, supplier_id = 1 WHERE coffee_id = 6;
+UPDATE coffee SET shop_id = 1, supplier_id = 2 WHERE coffee_id = 4;
+UPDATE coffee SET shop_id = 1, supplier_id = 3 WHERE coffee_id = 1;
+UPDATE coffee SET shop_id = 2, supplier_id = 1 WHERE coffee_id = 3;
+UPDATE coffee SET shop_id = 2, supplier_id = 2 WHERE coffee_id = 5;
+UPDATE coffee SET shop_id = 2, supplier_id = 3 WHERE coffee_id = 2;
+UPDATE coffee SET shop_id = 3, supplier_id = 1 WHERE coffee_id = 3;
+UPDATE coffee SET shop_id = 3, supplier_id = 2 WHERE coffee_id = 5;
+UPDATE coffee SET shop_id = 3, supplier_id = 3 WHERE coffee_id = 1;
 ```
 
 ### Code to create the views
@@ -141,24 +128,21 @@ Concatenating employees' names
 /* 3-a, Create view to concatenate employee names */
 CREATE VIEW full_names AS
 SELECT CONCAT(first_name, ' ', last_name) AS employee_full_name, employee_id, hire_date, job_title, shop_id
-FROM employee
-WHERE first_name IS NOT NULL AND last_name IS NOT NULL;
+FROM employee WHERE first_name IS NOT NULL AND last_name IS NOT NULL;
 ```
 
 Code to create SFW query:
 
 ```sql
-/* Create a SFW query for Coffee Shop table */
-SELECT * FROM coffee_shop
-WHERE state = 'IL'
+/* Create a SELECT-FROM-WHERE (SFW) query for Coffee Shop table */
+SELECT * FROM coffee_shop WHERE state = 'IL'
 ```
 
 Code to create the index:
 
 ```sql
 /* Create an index on the coffee_name field */
-CREATE INDEX coffee_index
-ON coffee (coffee_name);
+CREATE INDEX coffee_index ON coffee (coffee_name);
 ```
 
  Code for the Join:
@@ -169,3 +153,5 @@ SELECT * FROM employee
 JOIN coffee_shop ON employee.shop_id = coffee_shop.shop_id
 JOIN coffee ON coffee_shop.shop_id = coffee.shop_id
 ```
+
+The above query will return all the data from the three tables.
