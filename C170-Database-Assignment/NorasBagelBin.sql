@@ -14,29 +14,27 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `bagel_order` (
   `bagel_order_id` INT NOT NULL AUTO_INCREMENT,
-  `customer_id` INT NOT NULL,
+  `customer_id` INT NULL,
   `order_date` TIMESTAMP,
-  `delivery_fee` DECIMAL(4,2),
+  `delivery_fee` NUMERIC(4,2),
   `special_notes` VARCHAR(250),
-  PRIMARY KEY (`bagel_order_id`)
-);
-
-CREATE TABLE `bagel_order_line_item` (
-  `bagel_order_id` INT NOT NULL AUTO_INCREMENT,
-  `bagel_id` INT NOT NULL,
-  `bagel_quantity` INT NOT NULL,
-  PRIMARY KEY (`bagel_order_id`, `bagel_id`)
+  PRIMARY KEY (`bagel_order_id`),
+  CONSTRAINT FK_bagel_order FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
 );
 
 CREATE TABLE `bagel` (
-  `bagel_id` INT NOT NULL,
+  `bagel_id` INT NOT NULL AUTO_INCREMENT,
   `bagel_name` VARCHAR(50),
   `bagel_description` VARCHAR(150),
-  `bagel_price` DECIMAL(4,2),
+  `bagel_price` NUMERIC(4,2),
   PRIMARY KEY (`bagel_id`)
 );
 
-/*  Add Foreign Key to tables */
-ALTER TABLE `bagel_order` ADD CONSTRAINT FK_customer_id FOREIGN KEY (`customer_id`) REFERENCES `customer`(`customer_id`);
-ALTER TABLE `bagel_order_line_item` ADD CONSTRAINT FK_bagel_order_id FOREIGN KEY (`bagel_order_id`) REFERENCES `bagel_order`(`bagel_order_id`);
-ALTER TABLE `bagel_order_line_item` ADD CONSTRAINT FK_bagel_id  FOREIGN KEY (`bagel_id`) REFERENCES `bagel`(`bagel_id`);
+CREATE TABLE `bagel_order_line_item` (
+  `bagel_order_id` INT NOT NULL,
+  `bagel_id` INT NOT NULL,
+  `bagel_quantity` INT NOT NULL,
+  PRIMARY KEY (`bagel_order_id`, `bagel_id`),
+  CONSTRAINT FK_bagel_order_id FOREIGN KEY (`bagel_order_id`) REFERENCES `bagel_order`(`bagel_order_id`),
+  CONSTRAINT FK_bagel_id FOREIGN KEY (`bagel_id`) REFERENCES `bagel`(`bagel_id`)
+);
