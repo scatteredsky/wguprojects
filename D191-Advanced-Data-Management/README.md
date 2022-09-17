@@ -1,13 +1,9 @@
 # D191 Advanced Data Management
 
-COMPETENCIES
-Writing Complex SQL Statement
+**COMPETENCIES:**
+—Writing Complex SQL Statement in order to implement functions, stored procedures, and triggers to prepare data sets for data analysis and manipulation.
 
-Writes complex SQL statements in order to implement functions, stored procedures, and triggers to prepare data sets for data analysis and manipulation.
-
-Configuring Extraction, Transformation, and Loading (ETL) Workflows
-
-Configures data extraction, transformation, and loading tasks in order to automate data integration.
+—Configuring Extraction, Transformation, and Loading (ETL) Workflows in order to automate data integration.
 
 ## INTRODUCTION
 
